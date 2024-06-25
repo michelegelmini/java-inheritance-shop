@@ -3,6 +3,8 @@ public class Monitor extends Prodotto{
 	
 	private int size;
 	private boolean isSmart;
+	
+	public Monitor() {};
 
 	public Monitor(String name, String description, int size, boolean isSmart) {
 		super(name, description);
@@ -12,11 +14,22 @@ public class Monitor extends Prodotto{
 		this.isSmart = isSmart;
 		
 	}
+	
+	public void setSize(int size) {
+		this.size = size;
+	}
+	
 	public String getIsSmart() {
 		if (this.isSmart) {
 			return "Questo modello è smart";
 		} else {
 			return "Questo modello non è smart";
+		}
+	}
+	
+	public void setIsSmart(boolean isSmart) {
+		if (isSmart == true) {
+			this.isSmart = isSmart;
 		}
 	}
 	

@@ -2,9 +2,11 @@
 public class Cuffie extends Prodotto{
 	
 	private String color;
-	private boolean isWireless;
+	private String isWireless;
+	
+	public Cuffie() {}
 
-	public Cuffie(String name, String description, String color, boolean isWireless) {
+	public Cuffie(String name, String description, String color, String isWireless) {
 		super(name, description);
 		// TODO Auto-generated constructor stub
 		this.color = color;
@@ -12,11 +14,27 @@ public class Cuffie extends Prodotto{
 		
 	}
 	
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+	
+	public void setIsWireless(String isWireless) {
+		this.isWireless = isWireless;
+	}
+
 	public String getIsWireless() {
-		if (this.isWireless) {
+		if (this.isWireless.toLowerCase().equals("si")) {
 			return "Questo modello è wireless";
-		} else {
+		} else if (this.isWireless.toLowerCase().equals("no")){
 			return "Questo modello è cablato";
+		} else if (this.isWireless.toLowerCase().equals("entrambe")){
+			return "Questo modello è sia cablato che wireless";
+		} else {
+			return "N/A";
 		}
 	}
 	
