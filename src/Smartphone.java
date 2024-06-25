@@ -13,12 +13,9 @@ public class Smartphone extends Prodotto{
 	
 	
 	public void getProductInfo() {
-		System.out.println("*******************************************");
-		this.getFullName();
-		this.getDescription();
+		super.getProductInfo();
 		System.out.println("Codice IMEI: " + this.imeiCode);
 		System.out.println("Capacità: " + this.storage + "GB");
-		this.getVatPrice();
 		System.out.println("*******************************************");
 		
 	}

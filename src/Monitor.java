@@ -21,12 +21,9 @@ public class Monitor extends Prodotto{
 	}
 	
 	public void getProductInfo() {
-		System.out.println("*******************************************");
-		this.getFullName();
-		this.getDescription();
+		super.getProductInfo();
 		this.getIsSmart();
 		System.out.println("Dimensioni: " + this.size + " pollici");
-		this.getVatPrice();
 		System.out.println("*******************************************");
 		
 	}

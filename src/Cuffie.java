@@ -21,12 +21,9 @@ public class Cuffie extends Prodotto{
 	}
 	
 	public void getProductInfo() {
-		System.out.println("*******************************************");
-		this.getFullName();
-		this.getDescription();
+		super.getProductInfo();
 		this.getIsWireless();
 		System.out.println("Colore: " + this.color);
-		this.getVatPrice();
 		System.out.println("*******************************************");
 		
 	}

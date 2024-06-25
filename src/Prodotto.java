@@ -92,4 +92,21 @@ public class Prodotto {
 	public void getFullName() {
 		System.out.println(this.code + " - " + this.name);
 	}
+	
+	public void getProductInfo() {
+		System.out.println("*******************************************");
+		this.getFullName();
+		this.getDescription();
+		this.getVatPrice();
+		
+	}
+	
+	
+	//override del metodo toString
+	@Override
+	public String toString() {
+	 return this.name;
+	}
+	
+	
 }

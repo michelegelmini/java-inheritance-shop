@@ -20,6 +20,7 @@ public class Main {
 		Samsung.setPrice(1152.99d);
 		Samsung.setVat(22);
 		Samsung.getProductInfo();
+
 	}
 
 }
