@@ -12,11 +12,11 @@ public class Monitor extends Prodotto{
 		this.isSmart = isSmart;
 		
 	}
-	public void getIsSmart() {
+	public String getIsSmart() {
 		if (this.isSmart) {
-			System.out.println("Questo modello è smart");
+			return "Questo modello è smart";
 		} else {
-			System.out.println("Questo modello non è smart");
+			return "Questo modello non è smart";
 		}
 	}
 	
@@ -26,6 +26,14 @@ public class Monitor extends Prodotto{
 		System.out.println("Dimensioni: " + this.size + " pollici");
 		System.out.println("*******************************************");
 		
+	}
+	
+	@Override
+	public String toString() {
+		return super.toString() + 
+		"Dimensioni: " + this.size + "pollici" + "\n" +
+		this.getIsSmart() + "\n" +
+		"*******************************************";
 	}
 
 }

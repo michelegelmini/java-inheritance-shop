@@ -11,6 +11,11 @@ public class Prodotto {
 	
 	
 	//costruttore
+	
+	public Prodotto() {
+		this.code = generateCode();
+	};
+	
 	public Prodotto(String name, String description) {
 		this.code = generateCode();
 		this.name = name;
@@ -74,17 +79,21 @@ public class Prodotto {
 		}
 		
 	//metodo per avere il prezzo base
-	public void getBasePrice() {
+	public String getBasePrice() {
+		String basePrice = "";
 		if (this.price > 0) 
-		System.out.println("Il prezzo base del prodotto è €" + (String.format("%,.2f", this.price)));
+			 basePrice = "Il prezzo base del prodotto è €" + (String.format("%,.2f", this.price));
+		return basePrice;
 	}
 		
 	//metodo per avere il prezzo comprensivo di IVA
-	public void getVatPrice() {
+	public String getVatPrice() {
+		String vatPrice = "";
 		if (this.price > 0  && this.vat > 0) {
 		double finalPrice = this.price += this.price * this.vat / 100;
-		System.out.println("Il prezzo comprensivo di IVA del prodotto è €" + (String.format("%,.2f", finalPrice)));
+		vatPrice = "Il prezzo comprensivo di IVA del prodotto è €" + (String.format("%,.2f", finalPrice));
 		}
+		return vatPrice;
 	}
 	
 	//metodo per avere il nome esteso, ottenuto concatenando codice-nome
@@ -100,12 +109,17 @@ public class Prodotto {
 		this.getVatPrice();
 		
 	}
-	
-	
+		
 	//override del metodo toString
 	@Override
 	public String toString() {
-	 return this.name;
+	 return "******************************************" + "\n" +
+			"Codice Prodotto: " + this.code + "\n" +
+			 this.name + "\n" +
+			 this.description + "\n" +
+			 this.getBasePrice() + "\n" +
+			 "IVA:" + this.vat +"%" + "\n" +
+	 	   	this.getVatPrice() + "\n"; 
 	}
 	
 	

@@ -12,11 +12,11 @@ public class Cuffie extends Prodotto{
 		
 	}
 	
-	public void getIsWireless() {
+	public String getIsWireless() {
 		if (this.isWireless) {
-			System.out.println("Questo modello è wireless");
+			return "Questo modello è wireless";
 		} else {
-			System.out.println("Questo modello è cablato");
+			return "Questo modello è cablato";
 		}
 	}
 	
@@ -26,6 +26,14 @@ public class Cuffie extends Prodotto{
 		System.out.println("Colore: " + this.color);
 		System.out.println("*******************************************");
 		
+	}
+	
+	@Override
+	public String toString() {
+		return super.toString() + 
+		"Colore: " + this.color + "\n" +
+		this.getIsWireless() + "\n" +
+		"*******************************************";
 	}
 
 }
