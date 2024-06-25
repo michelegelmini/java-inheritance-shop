@@ -6,31 +6,58 @@ public class Carrello {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+
+		//assegnazione caratteristiche comuni a tutti i tipi di prodotto
+		//Nome
+		Scanner userProductNameScan = new Scanner(System.in);
+		System.out.println("Come si chiama il prodotto che vuoi aggiungere?");
+		String userProductName = userProductNameScan.nextLine().toString();
+
+		//Descrizione
+		Scanner userProductDescriptionScan = new Scanner(System.in);
+		System.out.println("Descrivi il tuo prodotto:");
+		String userProductDescription = userProductDescriptionScan.nextLine().toString();
 		
-	
-		Scanner productType = new Scanner(System.in);
+		//Prezzo
+		Scanner userProductPriceScan = new Scanner(System.in);
+		System.out.println("Quanto costa il tuo smartphone?");
+		int userProductPrice = Integer.valueOf(userProductPriceScan.nextLine());
+		
+		//chiedo quale delle tre tipologie di prodotto vuole aggiungere l'utente
+		
+		String productTypeSelected = "";
+		boolean userChoice = false;
+		
 		System.out.println("Vuoi aggiungere uno smartphone, un monitor o delle cuffie?");
 		
-		String productTypeSelected = productType.nextLine().toString().toLowerCase();
-		
+		while (userChoice == false) {
+				Scanner productType = new Scanner(System.in);
+				
+				productTypeSelected = productType.nextLine().toString().toLowerCase();
+				if ((productTypeSelected.equals("smartphone") || productTypeSelected.equals("cuffie") || productTypeSelected.equals("monitor"))) {
+					userChoice = true;
+				} else {
+					System.out.println("Non hai inserito un valore valido. Riprova.");
+				}
+			}
 		
 		if (productTypeSelected.equals("smartphone")) {
+			
 			System.out.println("Hai aggiunto uno smartphone");
 			//creo un nuovo smartphone
 			Smartphone newSmartphone = new Smartphone();
 			
-			//assegno caratteristiche (nome, descrizione, prezzo)
-			Scanner userProductName = new Scanner(System.in);
-			System.out.println("Come si chiama il tuo smartphone?");
-			newSmartphone.setName(userProductName.nextLine().toString());
+			//assegno caratteristiche comuni allo smartphone (nome, descrizione, prezzo)
 			
-			Scanner userProductDescription = new Scanner(System.in);
-			System.out.println("Come descriveresti il tuo smartphone?");
-			newSmartphone.setDescription(userProductDescription.nextLine().toString());
+			newSmartphone.setName(userProductName);
+			newSmartphone.setDescription(userProductDescription);
+			newSmartphone.setPrice(userProductPrice);
 			
-			Scanner userProductPrice = new Scanner(System.in);
-			System.out.println("Quanto costa il tuo smartphone?");
-			newSmartphone.setPrice(Integer.valueOf(userProductPrice.nextLine()));
+			//assegno caratteristiche specifiche dello smartphone
+			
+			Scanner userProductStorage = new Scanner(System.in);
+			System.out.println("Quanti GB ha il tuo smartphone?");
+			newSmartphone.setStorage(userProductStorage.nextLine().toString());
 			
 			newSmartphone.setVat(22);
 			System.out.println(newSmartphone.toString());
@@ -39,9 +66,7 @@ public class Carrello {
 			System.out.println("Hai aggiunto un monitor");
 		} else if (productTypeSelected.equals("cuffie")) {
 			System.out.println("Hai aggiunto delle cuffie");
-		} else {
-			System.out.println("Riprova");
-		}
+		} 
 	}
 	
 }

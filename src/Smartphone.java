@@ -1,15 +1,30 @@
+import java.util.Random;
 
 public class Smartphone extends Prodotto{
 	
-	private int imeiCode;
-	private int storage;
+	private String imeiCode;
+	private String storage;
 
-	public Smartphone() {};
+	public Smartphone() {
+		this.imeiCode = generateIMEICode();
+	};
 	
-	public Smartphone(String name, String description, int imeiCode, int storage) {
+	public Smartphone(String name, String description, String storage) {
 		super(name, description);
 		// TODO Auto-generated constructor stub
-		this.imeiCode = imeiCode;
+		this.storage = storage;
+		this.imeiCode = generateIMEICode();
+	}
+	
+	
+	static String generateIMEICode() {
+		Random r = new Random();
+		long max = 100000000000000L;
+		long result = r.nextLong(max);
+		return (String.format("%015d", result));
+	}
+	
+	public void setStorage(String storage) {
 		this.storage = storage;
 	}
 	
