@@ -9,10 +9,11 @@ public class Smartphone extends Prodotto{
 		this.imeiCode = generateIMEICode();
 	};
 	
-	public Smartphone(String name, String description, String storage) {
-		super(name, description);
+	
+	public Smartphone(String name, String description, double price) {
+		super(name, description, price);
 		// TODO Auto-generated constructor stub
-		this.storage = storage;
+		
 		this.imeiCode = generateIMEICode();
 	}
 	

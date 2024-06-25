@@ -2,10 +2,41 @@ import java.util.Scanner;
 
 public class Carrello {
 	
+	private Prodotto[] shoppingChart;
+	
+	public Carrello() {
+		this.shoppingChart = new Prodotto[0];
+	}
+	
+	public Prodotto[] getshoppingChart() {
+		return this.shoppingChart;
+	}
+	
+	public void addProduct(Prodotto newProduct) {
+		
+		// creo un nuovo array lungo un elemento in più di quello iniziale
+		Prodotto[] newProducts = new Prodotto[this.shoppingChart.length + 1];
+		
+		
+		// conto gli elementi del vecchio array e aggiungo un posto alla fine
+		for (int index = 0; index < this.shoppingChart.length; index++) {
+			newProducts[index] = this.shoppingChart[index];
+		}
+		
+		//aggiungo il nuovo studente nel posto rimasto vuoto in fondo all'array
+		newProducts[newProducts.length - 1] = newProduct;
+		
+		//sovrascrivo il vecchio array con quello nuovo
+		this.shoppingChart = newProducts;
+	}
+	
 	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		//creo un nuovo carrello
+		Carrello[] myShoppingChart = new Carrello[0];
 
 		//assegnazione caratteristiche comuni a tutti i tipi di prodotto
 		//Nome
@@ -42,37 +73,30 @@ public class Carrello {
 		
 		//creo l'oggetto opportuno sulla base della scelta dell'utente e aggiungo le caratteristiche specifiche
 		
+		Prodotto newProduct = new Prodotto();
+		
+		//assegno caratteristiche comuni a tutti i prodotti (nome, descrizione, prezzo)
+		newProduct.setName(userProductName);
+		newProduct.setDescription(userProductDescription);
+		newProduct.setPrice(userProductPrice);
+		
 		if (productTypeSelected.equals("smartphone")) {
 			
 			System.out.println("Hai aggiunto uno smartphone");
 			//creo un nuovo smartphone
-			Smartphone newSmartphone = new Smartphone();
-			
-			//assegno caratteristiche comuni allo smartphone (nome, descrizione, prezzo)
-			
-			newSmartphone.setName(userProductName);
-			newSmartphone.setDescription(userProductDescription);
-			newSmartphone.setPrice(userProductPrice);
-			
+			newProduct = new Smartphone(newProduct.getName(), newProduct.getDescription(), newProduct.getPrice());
+				
 			//assegno caratteristiche specifiche dello smartphone
 			
 			Scanner userProductStorage = new Scanner(System.in);
 			System.out.println("Quanti GB ha il tuo smartphone?");
-			newSmartphone.setStorage(userProductStorage.nextLine().toString());
+			((Smartphone) newProduct).setStorage(userProductStorage.nextLine().toString());
 			
-			//assegno l'IVA e stampo il risultato
-			newSmartphone.setVat(22);
-			System.out.println(newSmartphone.toString());
 			
 		} else if (productTypeSelected.equals("monitor")) {
 			System.out.println("Hai aggiunto un monitor");
 			//creo un nuovo monitor
-			Monitor newMonitor = new Monitor();
-			//assegno caratteristiche comuni allo smartphone (nome, descrizione, prezzo)
-			
-			newMonitor.setName(userProductName);
-			newMonitor.setDescription(userProductDescription);
-			newMonitor.setPrice(userProductPrice);
+			newProduct = new Monitor(newProduct.getName(), newProduct.getDescription(), newProduct.getPrice());
 			
 			//assegno caratteristiche specifiche dei monitors
 			
@@ -83,43 +107,40 @@ public class Carrello {
 			if (userProductIsSmart.nextLine().toLowerCase().equals("si")) {
 				hasSmartFunctions = true;
 			}
-			newMonitor.setIsSmart(hasSmartFunctions);			
+			((Monitor) newProduct).setIsSmart(hasSmartFunctions);			
 			
 			Scanner userProductSize = new Scanner(System.in);
 			System.out.println("Quanti pollici misura il tuo monitor?");
-			newMonitor.setSize(Integer.valueOf(userProductSize.nextLine()));
+			((Monitor) newProduct).setSize(Integer.valueOf(userProductSize.nextLine()));
 			
-			
-			//assegno l'IVA e stampo il risultato
-			newMonitor.setVat(22);
-			System.out.println(newMonitor.toString());
 			
 		} else if (productTypeSelected.equals("cuffie")) {
 			System.out.println("Hai aggiunto delle cuffie");
 			//creo nuove cuffie
-			Cuffie newHeadphones = new Cuffie();
-			
-			//assegno caratteristiche comuni (nome, descrizione, prezzo)
-			newHeadphones.setName(userProductName);
-			newHeadphones.setDescription(userProductDescription);
-			newHeadphones.setPrice(userProductPrice);
+			 newProduct = new Cuffie(newProduct.getName(), newProduct.getDescription(), newProduct.getPrice());
 			
 			//assegno caratteristiche specifiche delle cuffie
 			
 			Scanner userProductIsWireless = new Scanner(System.in);
 			System.out.println("Le tue cuffie sono cablate o wireless?");
-			newHeadphones.setIsWireless(userProductIsWireless.nextLine());
+			((Cuffie) newProduct).setIsWireless(userProductIsWireless.nextLine());
 					
 			
 			Scanner userProductColor = new Scanner(System.in);
 			System.out.println("Di che colore sono?");
-			newHeadphones.setColor(userProductColor.nextLine());
+			((Cuffie) newProduct).setColor(userProductColor.nextLine());
+						
 			
-			
-			//assegno l'IVA e stampo il risultato
-			newHeadphones.setVat(22);
-			System.out.println(newHeadphones.toString());
 		} 
+		
+		//assegno l'IVA e stampo il risultato
+		newProduct.setVat(22);
+		System.out.println(newProduct.toString());
+		
+		// addProduct(newProduct);
+		
+		
+	
 	}
 	
 }

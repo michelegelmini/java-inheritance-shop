@@ -16,10 +16,11 @@ public class Prodotto {
 		this.code = generateCode();
 	};
 	
-	public Prodotto(String name, String description) {
+	public Prodotto(String name, String description, double price) {
 		this.code = generateCode();
 		this.name = name;
 		this.description = description;
+		this.price = price;
 		
 		
 	}

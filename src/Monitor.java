@@ -5,9 +5,13 @@ public class Monitor extends Prodotto{
 	private boolean isSmart;
 	
 	public Monitor() {};
+	
+	public Monitor(String name, String description, double price) {
+		super(name, description, price);
+	}
 
-	public Monitor(String name, String description, int size, boolean isSmart) {
-		super(name, description);
+	public Monitor(String name, String description, double price, int size, boolean isSmart) {
+		super(name, description, price);
 		// TODO Auto-generated constructor stub
 		
 		this.size = size;
