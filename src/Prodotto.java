@@ -35,7 +35,7 @@ public class Prodotto {
 	}
 
 	public String getDescription() {
-		System.out.println(this.description);
+		//System.out.println(this.description);
 		return description;
 	}
 
