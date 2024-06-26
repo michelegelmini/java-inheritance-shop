@@ -23,18 +23,27 @@ public class Carrello {
 		
 		
 		// conto gli elementi del vecchio array e aggiungo un posto alla fine
-		for (int index = 0; index < shoppingChart.length; index++) {
+		for (int index = 0; index < numberOfProducts; index++) {
 			newProducts[index] = shoppingChart[index];
 		}
 		
 		//aggiungo il nuovo prodotto nel posto rimasto vuoto in fondo all'array
-		newProducts[newProducts.length - 1] = newProduct;
+		newProducts[numberOfProducts] = newProduct;
 		
 		//sovrascrivo il vecchio array con quello nuovo
 		this.shoppingChart = newProducts;
 		numberOfProducts++;
 	}
 	
+	public void total() {
+		int total = 0;
+		for (int i = 0; i < numberOfProducts; i++) {
+			total += shoppingChart[i].getIntVatPrice();
+			System.out.println(shoppingChart[i].getIntVatPrice());
+		}
+		System.out.println("Il costo totale dei prodotti è: " + (String.format("%,.2f", total) + "€"));
+		
+	}
 	
 
 	public static void main(String[] args) {
@@ -158,6 +167,7 @@ public class Carrello {
 		
 		
 		myShoppingChart.getShoppingChart();
+		myShoppingChart.total();
 		
 		
 		

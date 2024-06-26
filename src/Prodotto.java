@@ -97,6 +97,11 @@ public class Prodotto {
 		return vatPrice;
 	}
 	
+	public int getIntVatPrice() {
+		double finalPrice = this.price += this.price * this.vat / 100;
+		return Integer.valueOf(String.format("%,.2f", finalPrice));
+	}
+	
 	//metodo per avere il nome esteso, ottenuto concatenando codice-nome
 	
 	public void getFullName() {
