@@ -54,125 +54,134 @@ public class Carrello {
 		Prodotto newProduct = new Prodotto();
 		int addAnotherProduct = 1;
 
-		while (true) {
-			
-			if (addAnotherProduct != 1) {
-				break;
-			}
-		
-			//assegnazione caratteristiche comuni a tutti i tipi di prodotto
-			//Nome
-			Scanner userProductNameScan = new Scanner(System.in);
-			System.out.println("Come si chiama il prodotto che vuoi aggiungere?");
-			String userProductName = userProductNameScan.nextLine().toString();
-			userProductNameScan.close();
-	
-			//Descrizione
-			Scanner userProductDescriptionScan = new Scanner(System.in);
-			System.out.println("Descrivi il tuo prodotto:");
-			String userProductDescription = userProductDescriptionScan.nextLine().toString();
-			userProductDescriptionScan.close();
-			
-			//Prezzo
-			Scanner userProductPriceScan = new Scanner(System.in);
-			System.out.println("Quanto costa il tuo prodotto?");
-			int userProductPrice = Integer.valueOf(userProductPriceScan.nextLine());
-			userProductPriceScan.close();
-			
-			//chiedo quale delle tre tipologie di prodotto vuole aggiungere l'utente
-			
-			String productTypeSelected = "";
-			boolean userChoice = false;
-			System.out.println("Vuoi aggiungere uno smartphone, un monitor o delle cuffie?");
-			
-				while (userChoice == false) {
+		try (Scanner scanner = new Scanner(System.in)) {
+				while (true) {
 					
-						Scanner productType = new Scanner(System.in);	
-						productTypeSelected = productType.nextLine().toString().toLowerCase();
-							if ((productTypeSelected.equals("smartphone") || productTypeSelected.equals("cuffie") || productTypeSelected.equals("monitor"))) {
-								userChoice = true;
-							} else {
-								System.out.println("Non hai inserito un valore valido. Riprova.");
-						}
-						productType.close();
+					if (addAnotherProduct != 1) {
+						break;
 					}
-			
-			//creo l'oggetto opportuno sulla base della scelta dell'utente e aggiungo le caratteristiche specifiche
-			
-			
-			
-			if (productTypeSelected.equals("smartphone") || productTypeSelected.equals("1") ) {
 				
-				System.out.println("Hai aggiunto uno smartphone");
-				//creo un nuovo smartphone
-				newProduct = new Smartphone(userProductName, userProductDescription, userProductPrice);
+					//assegnazione caratteristiche comuni a tutti i tipi di prodotto
+					//Nome
+					System.out.println("Come si chiama il prodotto che vuoi aggiungere?");
+					String userProductName = scanner.nextLine();
+				
+			
+					//Descrizioned
+					System.out.println("Descrivi il tuo prodotto:");
+					String userProductDescription = scanner.nextLine();
+				
 					
-				//assegno caratteristiche specifiche dello smartphone
+					//Prezzo
+					System.out.println("Quanto costa il tuo prodotto?");
+					double userProductPrice = scanner.nextDouble();
+					
+					//chiedo quale delle tre tipologie di prodotto vuole aggiungere l'utente
+					
+					//String productTypeSelected = "";
+					//boolean userChoice = false;
+					
+					System.out.println("Che tipo di prodotto vuoi aggiungere?" + "\n" + "1: Smartphone" + "\n" + "2: Monitor" + "\n" + "3: Cuffie" + "\n" + "4: Esci e vai al totale");
+					
+					int choiche = scanner.nextInt();
+					scanner.nextLine();
+					
+		//				while (userChoice == false) {
+		//					
+		//						Scanner productType = new Scanner(System.in);	
+		//						productTypeSelected = productType.nextLine().toString().toLowerCase();
+		//							if ((productTypeSelected.equals("smartphone") || productTypeSelected.equals("cuffie") || productTypeSelected.equals("monitor"))) {
+		//								userChoice = true;
+		//							} else {
+		//								System.out.println("Non hai inserito un valore valido. Riprova.");
+		//						}
+		//						productType.close();
+		//					}
+					
+					//creo l'oggetto opportuno sulla base della scelta dell'utente e aggiungo le caratteristiche specifiche
+					
+					switch (choiche) {
+					
+						case 1:
+							
+							System.out.println("Hai aggiunto uno smartphone");
+							//creo un nuovo smartphone
+							newProduct = new Smartphone(userProductName, userProductDescription, userProductPrice);
+								
+							//assegno caratteristiche specifiche dello smartphone
+							
+							System.out.println("Quanti GB ha il tuo smartphone?");
+							String userProductStorage = scanner.nextLine();
+							((Smartphone) newProduct).setStorage(userProductStorage);
+							
+							
+							break;
+							
+							
+						case 2:
+							
+							System.out.println("Hai aggiunto un monitor");
+							//creo un nuovo monitor
+							newProduct = new Monitor(userProductName, userProductDescription, userProductPrice);
+							
+							//assegno caratteristiche specifiche dei monitors
+							
+							System.out.println("Il tuo monitor ha funzioni smart?");
+							String userProductIsSmart = scanner.nextLine();
+							
+							boolean hasSmartFunctions = false;
+							if (userProductIsSmart.toLowerCase().equals("si")) {
+								hasSmartFunctions = true;
+							}
+							((Monitor) newProduct).setIsSmart(hasSmartFunctions);			
+							
+							System.out.println("Quanti pollici misura il tuo monitor?");
+							int userProductSize = scanner.nextInt();
+							((Monitor) newProduct).setSize(userProductSize);
+													
+							break;
+							
+						case 3:
+							System.out.println("Hai aggiunto delle cuffie");
+							
+							//creo nuove cuffie
+							 newProduct = new Cuffie(userProductName, userProductDescription, userProductPrice);
+							
+							//assegno caratteristiche specifiche delle cuffie
+							
+							System.out.println("Le tue cuffie sono cablate o wireless?");
+							String userProductIsWireless = scanner.nextLine();
+							((Cuffie) newProduct).setIsWireless(userProductIsWireless);
+							
+							
+							System.out.println("Di che colore sono?");
+							String userProductColor = scanner.nextLine();
+							((Cuffie) newProduct).setColor(userProductColor);	
+							break;
+							
+						default:
+							 System.out.println("Scelta non valida. Riprova.");
+					         continue;
+						} 
 				
-				Scanner userProductStorage = new Scanner(System.in);
-				System.out.println("Quanti GB ha il tuo smartphone?");
-				((Smartphone) newProduct).setStorage(userProductStorage.nextLine().toString());
-				userProductStorage.close();
+					myShoppingChart.addProduct(newProduct);
+					
+					int addAnother = scanner.nextInt();
+					System.out.println("Vuoi aggiungere un altro prodotto?"+ "\n" + "1: sì, 2:no" + "\n");
+					addAnotherProduct = addAnother;
+					
+					System.out.println("--------------------------------------------------------");
+					
+						}
+		}
 				
 				
-			} else if (productTypeSelected.equals("monitor")|| productTypeSelected.equals("2")) {
-				System.out.println("Hai aggiunto un monitor");
-				//creo un nuovo monitor
-				newProduct = new Monitor(userProductName, userProductDescription, userProductPrice);
 				
-				//assegno caratteristiche specifiche dei monitors
+				myShoppingChart.getShoppingChart();
+				myShoppingChart.total();
 				
-				Scanner userProductIsSmart = new Scanner(System.in);
-				System.out.println("Il tuo monitor ha funzioni smart?");
 				
-				boolean hasSmartFunctions = false;
-				if (userProductIsSmart.nextLine().toLowerCase().equals("si")) {
-					hasSmartFunctions = true;
-				}
-				((Monitor) newProduct).setIsSmart(hasSmartFunctions);			
-				userProductIsSmart.close();
 				
-				Scanner userProductSize = new Scanner(System.in);
-				System.out.println("Quanti pollici misura il tuo monitor?");
-				((Monitor) newProduct).setSize(Integer.valueOf(userProductSize.nextLine()));
-				userProductSize.close();
-				
-			} else if (productTypeSelected.equals("cuffie")|| productTypeSelected.equals("3")) {
-				System.out.println("Hai aggiunto delle cuffie");
-				//creo nuove cuffie
-				 newProduct = new Cuffie(userProductName, userProductDescription, userProductPrice);
-				
-				//assegno caratteristiche specifiche delle cuffie
-				
-				Scanner userProductIsWireless = new Scanner(System.in);
-				System.out.println("Le tue cuffie sono cablate o wireless?");
-				((Cuffie) newProduct).setIsWireless(userProductIsWireless.nextLine());
-				userProductIsWireless.close();	
-				
-				Scanner userProductColor = new Scanner(System.in);
-				System.out.println("Di che colore sono?");
-				((Cuffie) newProduct).setColor(userProductColor.nextLine());
-				userProductColor.close();		
-				
-			} 
-		
-			myShoppingChart.addProduct(newProduct);
-			
-			Scanner addAnother = new Scanner(System.in);
-			System.out.println("Vuoi aggiungere un altro prodotto?"+ "\n" + "1: sì, 2:no" + "\n");
-			addAnotherProduct = addAnother.nextInt();
-			addAnother.close();
-			System.out.println("--------------------------------------------------------");
-			
-				}
-		
-		
-		
-		myShoppingChart.getShoppingChart();
-		myShoppingChart.total();
-		
-		
-		
 	
 		
 		
