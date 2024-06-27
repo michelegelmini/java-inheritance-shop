@@ -3,7 +3,7 @@ import java.util.Random;
 public class Smartphone extends Prodotto{
 	
 	private String imeiCode;
-	private String storage;
+	private int storage;
 
 	public Smartphone() {
 		this.imeiCode = generateIMEICode();
@@ -17,6 +17,14 @@ public class Smartphone extends Prodotto{
 		this.imeiCode = generateIMEICode();
 	}
 	
+	public Smartphone(String name, String description, double price, int storage) {
+		super(name, description, price);
+		// TODO Auto-generated constructor stub
+		
+		this.storage = storage;
+		this.imeiCode = generateIMEICode();
+	}
+	
 	
 	static String generateIMEICode() {
 		Random r = new Random();
@@ -25,7 +33,7 @@ public class Smartphone extends Prodotto{
 		return (String.format("%015d", result));
 	}
 	
-	public void setStorage(String storage) {
+	public void setStorage(int storage) {
 		this.storage = storage;
 	}
 	

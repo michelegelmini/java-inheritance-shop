@@ -22,8 +22,8 @@ public class Prodotto {
 		this.name = name;
 		this.description = description;
 		this.price = price;
-		this.vat = 1.22;
-		this.vatPrice = price * vat;
+		this.vat = 22;
+		this.vatPrice = price + (price * vat / 100);
 		
 		
 	}

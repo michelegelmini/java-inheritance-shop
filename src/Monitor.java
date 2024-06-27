@@ -48,7 +48,7 @@ public class Monitor extends Prodotto{
 	@Override
 	public String toString() {
 		return super.toString() + 
-		"Dimensioni: " + this.size + "pollici" + "\n" +
+		"Dimensioni: " + this.size + " pollici" + "\n" +
 		this.getIsSmart() + "\n" +
 		"*******************************************";
 	}

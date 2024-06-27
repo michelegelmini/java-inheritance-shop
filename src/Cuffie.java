@@ -31,15 +31,7 @@ public class Cuffie extends Prodotto{
 	}
 
 	public String getIsWireless() {
-		if (this.isWireless.toLowerCase().equals("wireless")) {
-			return "Questo modello è wireless";
-		} else if (this.isWireless.toLowerCase().equals("cablate")){
-			return "Questo modello è cablato";
-		} else if (this.isWireless.toLowerCase().equals("entrambe")){
-			return "Questo modello è sia cablato che wireless";
-		} else {
-			return "N/A";
-		}
+	return isWireless;
 	}
 	
 	public void getProductInfo() {
